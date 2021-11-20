@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from "react";
+import React, { useState } from "react";
 
 function App() {
   const [search, setSearch] = useState("");
@@ -9,6 +9,7 @@ function App() {
     e.preventDefault();
     try {
       const response = await fetch(`/?search=${search}`);
+      console.log(response);
 
       const parseResponse = await response.json();
 
@@ -19,7 +20,7 @@ function App() {
     }
   };
   return (
-    <Fragment>
+    <>
       <div className="container">
         <h1 className="my-5 text-center">🌟 Keyword Finder 🌟</h1>
         <form className="d-flex" onSubmit={onSubmitForm}>
@@ -34,7 +35,7 @@ function App() {
           <button className="btn btn-success ml-3">Submit</button>
         </form>
 
-        <h3 className="mt-5"> ⭐ Complete Matches</h3>
+        <h3 className="mt-5"> ⭐ Complete Matches ⭐</h3>
         {!complete_results || complete_results.length === 0 ? <p>No Complete Match Found</p> : 
         <table className="table my-5">
           <thead>
@@ -54,7 +55,7 @@ function App() {
         </table>
         }
 
-        <h3 className="mt-5"> ⭐ Partial Matches</h3>
+        <h3 className="mt-5"> ⭐ Partial Matches ⭐</h3>
         {!partial_results || partial_results.length === 0 ? <p>No Partial Match Found</p> :
         <table className="table my-5">
           <thead>
@@ -75,7 +76,7 @@ function App() {
         }
 
       </div>
-    </Fragment>
+    </>
   );
 }
 
